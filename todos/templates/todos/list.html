@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo Lists</title>
 </head>
 <body>
     <main>
@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for todo in todo_list_object.all %}
+                {% for todo in todo_list.all %}
                 <tr>
                     <td>
                         <a href="{% url 'todo_list_detail' todo.id %}">{{ todo.name }}</td>

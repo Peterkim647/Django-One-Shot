@@ -6,15 +6,15 @@ from todos.forms import TodoListForm
 def todo_list_list(request):
     todo_list = TodoList.objects.all()
     context = {
-        "todo_list_object": todo_list,
+        "todo_list": todo_list,
     }
     return render(request, "todos/list.html", context)
 
 
 def todo_list_detail(request, id):
-    todo_item_instance = get_object_or_404(TodoList, id=id)
+    todo_item = get_object_or_404(TodoList, id=id)
     context = {
-        "todo_item_instance": todo_item_instance,
+        "todo_item": todo_item,
     }
     return render(request, "todos/detail.html", context)
 
@@ -30,3 +30,18 @@ def todo_list_create(request):
         "form": form
     }
     return render(request, "todos/create.html", context)
+
+def todo_list_update(request, id):
+    todo_list = get_object_or_404(TodoList, id=id)
+    if request.method == "POST":
+        form = TodoListForm(request.POST, instance=todo_list)
+        if form.is_valid():
+            form.save()
+            return redirect("todo_list_detail", id=id)
+    else:
+        form = TodoListForm(instance=todo_list)
+    context = {
+        "form": form
+    }
+
+    return render(request, "todos/update.html", context)

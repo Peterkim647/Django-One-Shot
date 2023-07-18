@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo Lists</title>
 </head>
 <body>
     <main>
-        <h1>{{ todo_item_instance.name }}</h1>
+        <h1>{{ todo_item.name }}</h1>
+        <div>
+            <p>
+                <a href="{% url 'todo_list_update' todo_item.id %}">Edit</a>
+            </p>
+        </div>
+
         <h2>Tasks</h2>
         <table>
             <thead>
@@ -17,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for tasks in todo_item_instance.items.all %}
+                {% for tasks in todo_item.items.all %}
                 <tr>
                     <td>{{ tasks.task }}</td>
                     <td>{{ tasks.due_date }}</td>
