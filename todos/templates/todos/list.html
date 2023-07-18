@@ -8,6 +8,11 @@
 <body>
     <main>
         <h1>My Lists</h1>
+        <div>
+            <p>
+            <a href="{% url 'todo_list_create' %}">Create a new list</a>
+            </p>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -18,8 +23,9 @@
             <tbody>
                 {% for todo in todo_list_object.all %}
                 <tr>
-                    <td>{{ todo.name }}</td>
-
+                    <td>
+                        <a href="{% url 'todo_list_detail' todo.id %}">{{ todo.name }}</td>
+                    <td>{{ todo.items.count }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

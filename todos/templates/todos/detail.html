@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <h1>{{ todo_item_instance.name }}</h1>
+        <h2>Tasks</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Due date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tasks in todo_item_instance.items.all %}
+                <tr>
+                    <td>{{ tasks.task }}</td>
+                    <td>{{ tasks.due_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
